@@ -202,7 +202,6 @@
     <Compile Include="Director\SysMgmt\SysMgmt_ActiveDirectory.cs" />
     <Compile Include="Director\The_Director.cs" />
     <Compile Include="Director\Threat_Feeds\Feeds_Quttera.cs" />
-    <Compile Include="Fido_Support\Crypto\AES_Crypto.cs" />
     <Compile Include="Notification\Email\Email_Send.cs" />
     <Compile Include="Fido_Support\FidoDB\SQL_Queries.cs" />
     <Compile Include="Director\Threat_Feeds\Feeds_AlientVault.cs" />

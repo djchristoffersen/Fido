@@ -258,7 +258,7 @@ namespace Fido_Main.Fido_Support.FidoDB
         {
           foreach (var url in lFidoReturnValues.Url.Where(url => !string.IsNullOrEmpty(url)))
           {
-            InsertHistoricalThreatToDB(new HistorialThreatData {SDB = @"url", InValue=url, When = lFidoReturnValues.TimeOccurred);
+            InsertHistoricalThreatToDB(new HistorialThreatData { SDB = @"url", InValue = url, When = lFidoReturnValues.TimeOccurred });
           }
         }
       }
@@ -276,7 +276,7 @@ namespace Fido_Main.Fido_Support.FidoDB
         {
           foreach (var hash in lFidoReturnValues.Hash.Where(hash => !string.IsNullOrEmpty(hash)))
           {
-            InsertHistoricalThreatToDB(new HistorialThreatData {SDB =  @"hash", InValue = hash, When = lFidoReturnValues.TimeOccurred);
+            InsertHistoricalThreatToDB(new HistorialThreatData { SDB = @"hash", InValue = hash, When = lFidoReturnValues.TimeOccurred });
           }
         }
       }
@@ -292,7 +292,7 @@ namespace Fido_Main.Fido_Support.FidoDB
       {
         if (!string.IsNullOrEmpty(lFidoReturnValues.DstIP))
         {
-          InsertHistoricalThreatToDB(new HistorialThreatData { SDB = @"ip", InValue = lFidoReturnValues.DstIP, When = lFidoReturnValues.TimeOccurred);
+          InsertHistoricalThreatToDB(new HistorialThreatData { SDB = @"ip", InValue = lFidoReturnValues.DstIP, When = lFidoReturnValues.TimeOccurred });
         }
       }
       catch (Exception e)
