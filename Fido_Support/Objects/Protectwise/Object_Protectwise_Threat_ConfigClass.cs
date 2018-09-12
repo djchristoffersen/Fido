@@ -185,26 +185,8 @@ namespace Fido_Main.Fido_Support.Objects.ProtectWise
 
     }
 
-    public class ProtectWise_IP
+    public class ProtectWise_IP : ProtectWise_Flow_IP
     {
-      [JsonProperty("srcMac")]
-      internal string SrcMAC { get; set; }
-
-      [JsonProperty("dstMac")]
-      internal string DstMAC { get; set; }
-
-      [JsonProperty("srcIp")]
-      internal string SrcIP { get; set; }
-
-      [JsonProperty("dstIp")]
-      internal string DstIP { get; set; }
-
-      [JsonProperty("srcPort")]
-      internal string SrcPort { get; set; }
-
-      [JsonProperty("dstPort")]
-      internal string DstPort { get; set; }
-
       [JsonProperty("proto")]
       internal string Protocol { get; set; }
       
