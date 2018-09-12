@@ -318,16 +318,9 @@ namespace Fido_Main.Fido_Support.Objects.ProtectWise
       internal string Name { get; set; }
     }
 
-    public class ProtectWise_Destination_Country
-    {
-      [JsonProperty("confidence")]
-      internal string Confidence { get; set; }
+    public class ProtectWise_Destination_Country : ProtectWise_Location
+        {
 
-      [JsonProperty("isoCode")]
-      internal string IsoCode { get; set; }
-
-      [JsonProperty("name")]
-      internal string Name { get; set; }
     }
 
     public class ProtectWise_Destination_Postal
@@ -339,16 +332,21 @@ namespace Fido_Main.Fido_Support.Objects.ProtectWise
       internal string Confidence { get; set; }
     }
 
-    public class ProtectWise_Destination_City
+    public class ProtectWise_Destination_City : ProtectWise_Location
     {
-      [JsonProperty("confidence")]
-      internal string Confidence { get; set; }
 
-      [JsonProperty("isoCode")]
-      internal string IsoCode { get; set; }
-
-      [JsonProperty("name")]
-      internal string Name { get; set; }
     }
+
+    public class ProtectWise_Location
+        {
+            [JsonProperty("confidence")]
+            internal string Confidence { get; set; }
+
+            [JsonProperty("isoCode")]
+            internal string IsoCode { get; set; }
+
+            [JsonProperty("name")]
+            internal string Name { get; set; }
+        }
   }
 }
