@@ -230,15 +230,22 @@ namespace Fido_Main.Fido_Support.FidoDB
       //data.Add("threat_hash", threatMD5);
     }
 
-    private static void InsertHistoricalThreatToDB(string sdb, string invalue, string timedate)
+    private class HistorialThreatData
+        {
+            public string SDB { get; set; }
+            public string  InValue { get; set; }
+            public string When { get; set; }
+        }
+
+    private static void InsertHistoricalThreatToDB(HistorialThreatData threatData)
     {
       var db = new SqLiteDB();
       var data = new Dictionary<String, String>
       {
-        { sdb, invalue },
-        { "timedate", timedate}
+        { threatData.SDB, threatData.InValue },
+        { "timedate", threatData.When}
       };
-      sdb = @"previous_threat_" + sdb;
+      var sdb = @"previous_threat_" + threatData.SDB;
       //db.Insert("previous_threat_url", data);
       db.Insert(sdb, data);
     }
@@ -251,7 +258,7 @@ namespace Fido_Main.Fido_Support.FidoDB
         {
           foreach (var url in lFidoReturnValues.Url.Where(url => !string.IsNullOrEmpty(url)))
           {
-            InsertHistoricalThreatToDB(@"url", url, lFidoReturnValues.TimeOccurred);
+            InsertHistoricalThreatToDB(new HistorialThreatData {SDB = @"url", InValue=url, When = lFidoReturnValues.TimeOccurred);
           }
         }
       }
@@ -269,7 +276,7 @@ namespace Fido_Main.Fido_Support.FidoDB
         {
           foreach (var hash in lFidoReturnValues.Hash.Where(hash => !string.IsNullOrEmpty(hash)))
           {
-            InsertHistoricalThreatToDB(@"hash", hash, lFidoReturnValues.TimeOccurred);
+            InsertHistoricalThreatToDB(new HistorialThreatData {SDB =  @"hash", InValue = hash, When = lFidoReturnValues.TimeOccurred);
           }
         }
       }
@@ -285,7 +292,7 @@ namespace Fido_Main.Fido_Support.FidoDB
       {
         if (!string.IsNullOrEmpty(lFidoReturnValues.DstIP))
         {
-          InsertHistoricalThreatToDB(@"ip", lFidoReturnValues.DstIP, lFidoReturnValues.TimeOccurred);
+          InsertHistoricalThreatToDB(new HistorialThreatData { SDB = @"ip", InValue = lFidoReturnValues.DstIP, When = lFidoReturnValues.TimeOccurred);
         }
       }
       catch (Exception e)
