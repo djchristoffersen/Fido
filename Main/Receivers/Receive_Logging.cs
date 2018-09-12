@@ -20,29 +20,54 @@ using Fido_Main.Main.Detectors;
 
 namespace Fido_Main.Main.Receivers
 {
-  static class Receive_Logging
-  {
-    //DirectorToEngine is the handler for logging based detectors. It is designed
-    //to initiate and direct configured logged based detectors to their respective module
-    public static void DirectToEngine(string sDetector, string sVendor, string sDefaultServer, string sDefaultFile, bool bParamTest)
+    public abstract class Detector
     {
-      switch (sDetector)
-      {
-        case "antivirus":
-          switch (sVendor)
-          {
-            case "Sophos":
-              Sophos.ReadLogs(sDefaultServer, sDefaultFile);
-              break;  
-            case "Trend":
-              break;
-            case "Symantec":
-              break;
-          }
-          
-          break;
-      }
-    
+        public string Name { get; set; }
+        public string Vendor { get; set; }
+        public string  DefaultServer { get; set; }
+        public string DefaultFile { get; set; }
+        public bool ParameterTest { get; set; }
+
+        public abstract void DoWork();
+        
     }
+
+    public abstract class AntiVirus : Detector
+    {
+
+    }
+
+    public class SophosAnti : AntiVirus
+    {
+        public override void DoWork()
+        {
+            Sophos.ReadLogs(DefaultServer, DefaultFile);
+        }
+    }
+
+    public class TrendAnti : AntiVirus
+    {
+        public override void DoWork()
+        {
+        }
+    }
+
+    public class SymantecAnti : AntiVirus
+    {
+        public override void DoWork()
+        {
+        }
+    }
+
+    static class Receive_Logging
+  {
+        //DirectorToEngine is the handler for logging based detectors. It is designed
+        //to initiate and direct configured logged based detectors to their respective module
+        public static void DirectToEngine(Detector detector)
+        {
+
+            detector.DoWork();
+        }
+
   }
 }
